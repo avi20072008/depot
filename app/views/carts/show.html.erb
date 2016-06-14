@@ -1,6 +1,21 @@
 <% if notice %>
 	<p id="notice"><%= notice %></p>
 <% end %>
+<h1> View Cart Summary</h1>
+
+<table>
+  <tbody>
+    <%= render(@cart.line_items) %>
+    <tr>
+      <td colspan="3"><h4 style="border-top:1px solid #555;padding-top:10px"> Grand Total : <%= @cart.grand_total %></h4></td>
+    </tr>
+  </tbody>
+</table>
 
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
 <%= link_to 'Back', carts_path %>
+
+
+<style type="text/css">
+	h1, table{color:#000;}
+</style>

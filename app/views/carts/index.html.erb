@@ -1,39 +1,10 @@
-<h1>Listing carts</h1>
+<h2>Listing carts</h2>
 
-<table>
-  <thead>
-    <tr>
-      <th> Book </th>
-      <th> Title </th>
-      <th> Qty </th>
-      <th> Amount </th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @carts.line_items.each do |item| %>
-      <tr>
-        <td><%= image_tag(item.product.image_url) %></td>
-        <td><%= item.product.title %> </td>
-        <td><%= item.qty %></td>
-        <td><%= item.total_price %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_product_path(item.product) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-
-    <tr>
-      <td colspan="3"><h2> Grand Total : <%= @carts.grand_total %></h2></td>
-    </tr>
-  </tbody>
-</table>
 
 <br>
 
 <%= link_to 'New Cart', new_cart_path %>
 
 <style type="text/css">
-  th, td{padding:10px;}
 </style>

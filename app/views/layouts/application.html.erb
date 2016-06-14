@@ -13,11 +13,19 @@
 	</div>
 	<div id="columns">
 		<div id="side">
+			
+				<div id="cart">
+					<% unless @cart.line_items.empty? %>
+						<%= render 'carts/cart' %>
+					<% end %>
+				</div>		
+
 			 <ul>
 				 <li><a href="http://www....">Home</a></li>
 				 <li><a href="http://www..../faq">Questions</a></li>
 				 <li><a href="http://www..../news">News</a></li>
 				 <li><a href="http://www..../contact">Contact</a></li>
+				 
 			 </ul>
 		 </div>
 		 <div id="main">

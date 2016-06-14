@@ -18,7 +18,7 @@ Accessed : <%= pluralize(session[:counter], "time") %>
 		<h5><%= sanitize(prod.desc) %></h5>
 		<div class="price_line" style="margin-left:100px">
 			<span class="price"><%= number_to_currency(prod.price) %></span>
-			<%= button_to "Add To Cart", line_items_path(product_id: prod.id) %>
+			<%= button_to "Add To Cart", line_items_path(product_id: prod.id), remote: true %>
 		</div>
 	</div>
    <% end %>

@@ -1,0 +1,14 @@
+<h2> Partial Cart </h2>
+
+<table class="sidebar_cart">
+  <tbody>
+    <%= render(@cart.line_items) %>
+    <tr>
+      <td colspan="3"><h4 style="border-top:1px solid #555;padding-top:10px"> Grand Total : <%= @cart.grand_total %></h4></td>
+    </tr>
+  </tbody>
+</table>
+
+<style type="text/css">
+	h2, .sidebar_cart{color:#fff;}
+</style>

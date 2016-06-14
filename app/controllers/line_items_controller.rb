@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :show]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -29,14 +29,15 @@ class LineItemsController < ApplicationController
     @prod = Product.find(params[:product_id])
     #@line_item = @cart.line_items.build(product: @prod)
     @line_item = @cart.add_product(@prod.id)
-    # test purpuse 
+    # test purpuse
     session[:counter] = 0
 
     #@line_item = LineItem.new(line_item_params)
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+        format.html { redirect_to store_index_path }
+        format.js {}
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
