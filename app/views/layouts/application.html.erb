@@ -13,13 +13,13 @@
 	</div>
 	<div id="columns">
 		<div id="side">
-			
+				<% if @cart %>
 				<div id="cart">
 					<% unless @cart.line_items.empty? %>
 						<%= render 'carts/cart' %>
 					<% end %>
 				</div>		
-
+				<% end %>
 			 <ul>
 				 <li><a href="http://www....">Home</a></li>
 				 <li><a href="http://www..../faq">Questions</a></li>

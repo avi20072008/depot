@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create, :show]
+  before_action :set_cart, only: [:create, :show, :decrement]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -60,12 +60,34 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def decrement
+
+    @line_item = LineItem.decrease(params[:id])
+    #current_li = LineItem.find(params[:id])
+
+    # if current_li.qty == 1 
+    #   current_li.destroy
+    # else
+    #   current_li.qty = current_li.qty - 1
+    # end
+    
+    respond_to do |format|
+      if @line_item.save
+        format.js {}
+        format.html { redirect_to store_index_path }
+      else
+        format.html{redirect_to store_index_path}
+      end
+    end
+
+  end
+
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to cart_path(session[:cart_id]), notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
